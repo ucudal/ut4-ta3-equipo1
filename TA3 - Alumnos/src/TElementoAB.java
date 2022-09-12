@@ -76,10 +76,25 @@ public class TElementoAB<T> implements IElementoAB<T> {
      * @return recorrida en inorden del subArbol que cuelga del elemento actual
      */
     @Override
+    /* Inorden: Izquierdo -> Raiz -> Derecho */
     public String inOrden() {
-          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           String tempStr = "";
+        
+        /* Checkeo hijo izquierdo primero */
+        if (this.hijoIzq != null) {
+            tempStr += this.hijoIzq.inOrden();
+        }
+        /* Despues checkeo raiz */
+        tempStr += this.etiqueta;
+        
+        /* Despues checkeo hijo derecho */
+        if (this.hijoDer != null) {
+            tempStr += this.hijoDer.inOrden();
+        }
+        return tempStr;
     }
 
+    
    @Override
     public void inOrden(Lista<T> unaLista) {
           throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -118,8 +133,19 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public int obtenerAltura() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int altIzq = -1;
+        int altDer = -1;
+        
+        if (this.hijoIzq != null) {
+            altIzq = this.hijoIzq.obtenerAltura();
+        }
+        if (this.hijoDer != null) {
+            altDer = this.hijoDer.obtenerAltura();
+        }
+        
+        return Math.max(altIzq, altDer) + 1;
     }
+    
 
     @Override
     public int obtenerTamanio() {
