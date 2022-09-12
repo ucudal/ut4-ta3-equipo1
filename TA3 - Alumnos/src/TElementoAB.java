@@ -77,7 +77,48 @@ public class TElementoAB<T> implements IElementoAB<T> {
      */
     @Override
     public String inOrden() {
-          throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        StringBuilder tempStr = new StringBuilder();
+        if (hijoIzq != null) {
+            tempStr.append(getHijoIzq().inOrden());
+            tempStr.append(TArbolBB.SEPARADOR_ELEMENTOS_IMPRESOS);
+        }
+        tempStr.append(imprimir());
+        if (hijoDer != null) {
+            tempStr.append(TArbolBB.SEPARADOR_ELEMENTOS_IMPRESOS);
+            tempStr.append(getHijoDer().inOrden());
+        }
+
+        return tempStr.toString();
+    }
+
+    @Override
+    public String preOrden() {
+        StringBuilder tempStr = new StringBuilder();
+        tempStr.append(imprimir());
+        if (hijoIzq != null) {
+            tempStr.append(TArbolBB.SEPARADOR_ELEMENTOS_IMPRESOS);
+            tempStr.append(getHijoIzq().preOrden());
+        }
+        if (hijoDer != null) {
+            tempStr.append(TArbolBB.SEPARADOR_ELEMENTOS_IMPRESOS);
+            tempStr.append(getHijoDer().preOrden());
+        }
+        return tempStr.toString();
+    }
+
+    @Override
+    public String postOrden() {
+        StringBuilder tempStr = new StringBuilder();
+        if (hijoIzq != null) {
+            tempStr.append(getHijoIzq().postOrden());
+            tempStr.append(TArbolBB.SEPARADOR_ELEMENTOS_IMPRESOS);
+        }
+        if (hijoDer != null) {
+            tempStr.append(getHijoDer().postOrden());
+            tempStr.append(TArbolBB.SEPARADOR_ELEMENTOS_IMPRESOS);
+        }
+        tempStr.append(imprimir());
+        return tempStr.toString();
     }
 
    @Override
@@ -123,7 +164,19 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public int obtenerTamanio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.hijoIzq == null && this.hijoDer == null){
+            return 1;
+        }
+        int tamanioIzq = 0;
+        int tamanioDer = 0;
+        
+        if(this.hijoIzq != null){
+            tamanioIzq = this.hijoIzq.obtenerTamanio();
+        }
+        if(this.hijoDer != null){
+            tamanioDer = this.hijoDer.obtenerTamanio();
+        }
+        return tamanioIzq + tamanioDer + 1;
     }
 
     @Override
