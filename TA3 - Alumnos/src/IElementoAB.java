@@ -63,6 +63,20 @@ public interface IElementoAB<T> {
      * @return String conteniendo el InOrden
      */
     public String inOrden();
+    
+    /**
+     * Imprime en preorden el arbol separado por guiones.
+     *
+     * @return String conteniendo el InOrden
+     */
+    public String preOrden();
+    
+    /**
+     * Imprime en postorden el arbol separado por guiones.
+     *
+     * @return String conteniendo el InOrden
+     */
+    public String postOrden();
 
      /**
      * pone las etiquetas del recorrido en inorden en una linkedlist.

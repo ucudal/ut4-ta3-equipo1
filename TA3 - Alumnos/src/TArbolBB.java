@@ -42,6 +42,7 @@ public class TArbolBB<T> implements IArbolBB<T> {
     /**
      * @return recorrida en inorden del arbol, null en caso de ser vacío
      */
+    @Override
     public String inOrden() {
         if (esVacio()) {
             return null;
@@ -49,6 +50,27 @@ public class TArbolBB<T> implements IArbolBB<T> {
             return raiz.inOrden();
         }
     }
+
+
+    @Override
+    public String preOrden() {
+        if (esVacio()) {
+            return null;
+        } else {
+            return raiz.preOrden();
+        }
+    }
+
+
+    @Override
+    public String postOrden() {
+        if (esVacio()) {
+            return null;
+        } else {
+            return raiz.postOrden();
+        }
+    }
+
 
     /**
      * @return recorrida en preOrden del arbol, null en caso de ser vacío
@@ -92,7 +114,10 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public int obtenerTamanio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (raiz == null) {
+            return 0;
+        }
+        return (raiz.obtenerTamanio());
     }
 
     @Override
